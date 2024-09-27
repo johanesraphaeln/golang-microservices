@@ -1,0 +1,42 @@
+syntax = "v1"
+
+info (
+	title:  "API Projects"
+	desc:   "API Gateway for the Projects"
+	author: ""
+	email:  "johanesraphaeln@gmail.com"
+)
+
+type (
+	createReq {
+		name        string `json:"name"`
+		description string `json:"description"`
+	}
+	createResp {
+		id          uint   `json:"id"`
+		name        string `json:"name"`
+		description string `json:"description"`
+		created_at  string `json:"created_at"`
+		updated_at  string `json:"updated_at"`
+	}
+)
+
+type (
+	getReq  {}
+	getResp {
+		id          uint   `json:"id"`
+		name        string `json:"name"`
+		description string `json:"description"`
+		created_at  string `json:"created_at"`
+		updated_at  string `json:"updated_at"`
+	}
+)
+
+service projects-api {
+	@handler GetProjects // TODO: set handler name and delete this comment
+	get /projects (getReq) returns (getResp)
+
+	@handler CreateProject
+	post /projects (createReq) returns (createResp)
+}
+
